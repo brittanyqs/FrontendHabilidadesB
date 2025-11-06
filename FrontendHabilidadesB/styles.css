@@ -480,9 +480,9 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 100px 20px;
+  min-height: 100vh; /* ocupa toda la pantalla */
   background-color: #f7f8fa;
-  min-height: calc(100vh - 80px);
+  padding: 20px; /* padding lateral para móviles */
   box-sizing: border-box;
 }
 
@@ -493,9 +493,9 @@ main {
   padding: 40px 30px;
   max-width: 400px;
   width: 100%;
-  margin: 0 auto;
   font-family: 'Georgia', serif;
   color: #333;
+  box-sizing: border-box;
 }
 
 #registerForm h2 {
@@ -569,16 +569,20 @@ main {
    🌿 RESPONSIVE REGISTRO
 ======================= */
 @media (max-width: 600px) {
+  main {
+    padding: 10px; /* menos espacio lateral */
+  }
+
   #registerForm {
-    padding: 30px 20px;
+    padding: 25px 18px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   }
 
   #registerForm h2 {
-    font-size: 1.6em;
+    font-size: 1.4em;
   }
 
   #registerForm button {
     font-size: 0.95em;
   }
 }
-
