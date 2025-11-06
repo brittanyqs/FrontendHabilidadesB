@@ -369,29 +369,32 @@ img, video {
 /* =======================
    🌿 SECCIÓN LOGIN
 ======================= */
-main {
+main.login-main {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 100px 20px;
   background-color: #f7f8fa;
-  min-height: calc(100vh - 80px); /* deja espacio para el navbar */
+  min-height: calc(100vh - 80px); /* espacio para navbar */
   box-sizing: border-box;
 }
 
-form {
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+#loginForm {
   background-color: #fff;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   padding: 40px 30px;
-  max-width: 400px;
-  width: 100%;
-  margin: 0 auto;
   font-family: 'Georgia', serif;
   color: #333;
 }
 
-form h2 {
+#loginForm h2 {
   text-align: center;
   font-size: 1.8em;
   color: #4a2c2a;
@@ -399,8 +402,8 @@ form h2 {
   letter-spacing: 0.5px;
 }
 
-form input[type="email"],
-form input[type="password"] {
+#loginForm input[type="email"],
+#loginForm input[type="password"] {
   width: 100%;
   padding: 12px 14px;
   margin-bottom: 20px;
@@ -412,13 +415,13 @@ form input[type="password"] {
   box-sizing: border-box;
 }
 
-form input:focus {
+#loginForm input:focus {
   border-color: #4a2c2a;
   box-shadow: 0 0 5px rgba(74, 44, 42, 0.3);
   outline: none;
 }
 
-form button {
+#loginForm button {
   width: 100%;
   padding: 12px;
   background-color: #4a2c2a;
@@ -431,28 +434,28 @@ form button {
   transition: background-color 0.3s, transform 0.1s;
 }
 
-form button:hover {
+#loginForm button:hover {
   background-color: #6d3e39;
 }
 
-form button:active {
+#loginForm button:active {
   transform: scale(0.98);
 }
 
-form p {
+#loginForm p {
   text-align: center;
   margin-top: 15px;
   font-size: 0.95em;
 }
 
-form p a {
+#loginForm p a {
   color: #4a2c2a;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s;
 }
 
-form p a:hover {
+#loginForm p a:hover {
   color: #f9b3c9;
   text-decoration: underline;
 }
@@ -461,18 +464,19 @@ form p a:hover {
    🌿 RESPONSIVE LOGIN
 ======================= */
 @media (max-width: 600px) {
-  form {
+  #loginForm {
     padding: 30px 20px;
   }
 
-  form h2 {
+  #loginForm h2 {
     font-size: 1.6em;
   }
 
-  form button {
+  #loginForm button {
     font-size: 0.95em;
   }
 }
+
 /* =======================
    🌿 SECCIÓN REGISTRO
 ======================= */
@@ -586,3 +590,4 @@ main {
     font-size: 0.95em;
   }
 }
+
