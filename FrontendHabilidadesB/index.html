@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa Interactivo del Autocuidado</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- 🌸 NAVBAR -->
+  <nav>
+    <div class="logo">Autocuidado</div>
+    <div class="menu-toggle" id="menu-toggle">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <ul id="nav-links">
+      <li><a href="#/">Inicio</a></li>
+      <li><a href="#definiciones">Definiciones</a></li>
+      <li><a href="#diagrama">Círculo</a></li>
+      <li><a href="#video">Video</a></li>
+      <li><a href="#collage">Collage</a></li>
+      <li><a href="#formulario">Formulario</a></li>
+      <li><a href="/html/login.html">Login</a></li>
+      <li><a href="/html/registro.html">Registro</a></li>
+    </ul>
+  </nav>
+
+  <!-- 🌼 Definición de habilidades blandas -->
+  <section id="definiciones" class="definiciones">
+    <h2>Habilidades Blandas</h2>
+    <div class="habilidad">
+      <div class="texto">
+        <h3>Definición</h3>
+        <p>Las habilidades blandas son un conjunto de competencias personales, sociales y comunicativas que permiten a una persona relacionarse eficazmente con los demás, adaptarse a diferentes entornos y trabajar de manera colaborativa. A diferencia de las habilidades duras, que se refieren a conocimientos técnicos o específicos, las habilidades blandas tienen que ver con cómo se usa ese conocimiento en la práctica y cómo se interactúa con otras personas.</p>
+      </div>
+      <div class="numero"></div>
+    </div>
+  </section>
+
+  <!-- 🌿 Diagrama -->
+  <h2 id="diagrama">Círculo del autocuidado</h2>
+  <section class="diagrama">
+    <img src="/img/Diagrama.png" alt="diagrama del autocuidado">
+  </section>
+
+  <!-- 🎬 Video -->
+  <h2 id="video">Video</h2>
+  <section class="video">
+    <video controls autoplay muted loop>
+      <source src="/img/Real Estate Video in Dark Yellow Light Brown Olive Green Warm & Modern Style.mp4" type="video/mp4">
+      Tu navegador no soporta videos.
+    </video>
+  </section>
+
+  <!-- 🗺️ Mapa interactivo -->
+  <section id="inicio">
+    <h1>Mapa Interactivo del Autocuidado</h1>
+    <p>Pasa el cursor o toca cada tarjeta para descubrir una acción concreta asociada a cada habilidad blanda.</p>
+  </section>
+
+  <section id="habilidades" class="grid">
+
+    <div class="card">
+      <div class="inner-card">
+        <div class="front c1"><h2>1. Empatía</h2></div>
+        <div class="back"><p>Escucha activamente y practica la autocompasión en momentos difíciles.</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="inner-card">
+        <div class="front c2"><h2>2. Comunicación efectiva</h2></div>
+        <div class="back"><p>Expresa tus ideas con claridad y comunica tus límites de manera asertiva.</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="inner-card">
+        <div class="front c3"><h2>3. Resiliencia</h2></div>
+        <div class="back"><p>Enfrenta las dificultades con optimismo y aprende de cada experiencia.</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="inner-card">
+        <div class="front c4"><h2>4. Proactividad</h2></div>
+        <div class="back"><p>Anticípate a los problemas y planifica tus tareas para mantener el equilibrio.</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="inner-card">
+        <div class="front c5"><h2>5. Adaptabilidad al cambio</h2></div>
+        <div class="back"><p>Acepta los cambios con flexibilidad y date tiempo para adaptarte sin presión.</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="inner-card">
+        <div class="front c6"><h2>6. Gestión del tiempo</h2></div>
+        <div class="back"><p>Organiza tus prioridades y reserva espacios personales para descansar.</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="inner-card">
+        <div class="front c7"><h2>7. Creatividad e innovación</h2></div>
+        <div class="back"><p>Busca nuevas soluciones y permite que tu curiosidad guíe el aprendizaje.</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="inner-card">
+        <div class="front c8"><h2>8. Aprendizaje continuo</h2></div>
+        <div class="back"><p>Aprende algo nuevo cada día y celebra los avances que logras.</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="inner-card">
+        <div class="front c9"><h2>9. Trabajo en equipo</h2></div>
+        <div class="back"><p>Colabora activamente y valora las fortalezas de tus compañeros.</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="inner-card">
+        <div class="front c10"><h2>10. Liderazgo</h2></div>
+        <div class="back"><p>Inspira con tu ejemplo y reconoce tus límites para mantener el bienestar.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🖼️ Collage -->
+  <h2 id="collage">Collage</h2>
+  <section class="collage">
+    <img src="/img/collage.png" alt="collage del autocuidado">
+  </section>
+
+  <!-- 🌺 Footer -->
+  <footer id="contacto">
+    © 2025 | Mapa interactivo de habilidades blandas para el autocuidado
+  </footer>
+
+ <script src="script.js"></script>
+</body>
+</html>

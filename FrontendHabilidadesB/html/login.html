@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa Interactivo del Autocuidado</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+
+  <!-- 🌸 NAVBAR -->
+  <nav>
+    <div class="logo">Autocuidado</div>
+    <div class="menu-toggle" id="menu-toggle">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <ul id="nav-links">
+      <li><a href="#/">Inicio</a></li>
+      <li><a href="#definiciones">Definiciones</a></li>
+      <li><a href="#diagrama">Círculo</a></li>
+      <li><a href="#video">Video</a></li>
+      <li><a href="#collage">Collage</a></li>
+      <li><a href="#formulario">Formulario</a></li>
+      <li><a href="/Html/login.html">Login</a></li>
+      <li><a href="/Html/registro.html">Registro</a></li>
+    </ul>
+  </nav>
+ <!-- Main -->
+    <main class="flex justify-center items-center flex-1 px-4">
+      <div class="w-full max-w-md">
+        <form id="loginForm" class="bg-white shadow-lg rounded-xl p-8">
+          <h2 class="text-2xl font-bold mb-6 text-center text-green-700">Iniciar Sesión</h2>
+
+          <input id="email" type="email" name="email" placeholder="Correo electrónico" required
+            class="w-full mb-4 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-green-500">
+
+          <input id="password" type="password" name="password" placeholder="Contraseña" required
+            class="w-full mb-6 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-green-500">
+
+          <button type="submit"
+            class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition font-semibold">
+            Entrar
+          </button>
+
+          <p class="text-center mt-4">
+            <a href="/html/registro.html" class="text-green-600 hover:underline">Crear cuenta nueva</a>
+          </p>
+        </form>
+      </div>
+    </main>
+
+  <!-- 🌺 Footer -->
+  <footer id="contacto">
+    © 2025 | Mapa interactivo de habilidades blandas para el autocuidado
+  </footer>
+
+ <script src="/script.js"></script>
+</body>
+</html>

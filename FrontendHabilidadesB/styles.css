@@ -1,0 +1,584 @@
+/* =======================
+   🌸 NAVBAR (final y funcional)
+======================= */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0; /* evita desbordar el viewport */
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #4a2c2a;
+  color: #fff;
+  padding: 12px 16px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+nav .logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+  white-space: nowrap;
+}
+
+nav ul li a:hover {
+  color: #f9b3c9;
+}
+
+/* --- Botón hamburguesa --- */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  z-index: 1100; /* 🔹 asegura que quede por encima del menú */
+}
+
+.menu-toggle div {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 4px 0;
+  transition: all 0.3s ease;
+}
+
+/* --- Navbar Responsive --- */
+@media (max-width: 768px) {
+  nav ul {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #4a2c2a;
+    flex-direction: column;
+    width: 100%;
+    display: none;
+    padding: 15px 0;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.2);
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+}
+
+/* --- Evita scroll horizontal --- */
+html, body {
+  overflow-x: hidden;
+}
+
+/* =======================
+   🌿 CUERPO Y TEXTOS
+======================= */
+body {
+  font-family: 'Georgia', serif;
+  background-color: #f7f8fa;
+  margin: 0;
+  padding: 100px 40px 40px; /* espacio superior para el nav fijo */
+  text-align: center;
+  color: #333;
+}
+
+h1 {
+  font-size: 2em;
+  color: #4a2c2a;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-family: 'Georgia', serif;
+  text-align: center;
+  color: #4a2c2a;
+  margin: 30px 0 20px;
+}
+
+p {
+  color: #555;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+/* =======================
+   💠 SECCIONES GENERALES
+======================= */
+section {
+  margin: 40px auto;
+  max-width: 1000px;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+/* =======================
+   🧩 TARJETAS INTERACTIVAS
+======================= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.card {
+  perspective: 1000px;
+}
+
+.inner-card {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.card:hover .inner-card {
+  transform: rotateY(180deg);
+}
+
+.front,
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 15px;
+  color: white;
+}
+
+.front h2 {
+  font-size: 1.2em;
+  margin: 0;
+}
+
+.back {
+  transform: rotateY(180deg);
+  background-color: #fff;
+  color: #333;
+  text-align: center;
+  font-size: 0.95em;
+  line-height: 1.4;
+  padding: 20px;
+}
+
+/* --- Colores de las tarjetas --- */
+.c1 { background: #f9b3c9; }
+.c2 { background: #ef5350; }
+.c3 { background: #42a5f5; }
+.c4 { background: #f4a261; }
+.c5 { background: #81c784; }
+.c6 { background: #e53935; }
+.c7 { background: #ffd54f; color: #333; }
+.c8 { background: #ba68c8; }
+.c9 { background: #ffb74d; }
+.c10 { background: #4caf50; }
+
+/* =======================
+   🌺 SECCIÓN HABILIDADES BLANDAS
+======================= */
+.habilidades-blandas {
+  background-color: #fdf8f6;
+  padding: 60px 20px;
+  color: #4a2c2a;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.habilidad {
+  background: #f3f1ed;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.habilidad .texto {
+  padding: 25px;
+  text-align: left;
+  width: 80%;
+}
+
+.habilidad h3 {
+  margin: 0 0 10px;
+  font-size: 1.4em;
+  color: #4a2c2a;
+}
+
+.habilidad p {
+  margin: 0;
+  font-size: 0.95em;
+  line-height: 1.5;
+  color: #5c4a47;
+}
+
+.habilidad .numero {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  font-style: italic;
+  color: #fff;
+}
+
+/* --- Colores de números --- */
+.habilidad:nth-child(2) .numero { background-color: #a3b18a; }
+.habilidad:nth-child(3) .numero { background-color: #8ecae6; }
+.habilidad:nth-child(4) .numero { background-color: #e5989b; }
+.habilidad:nth-child(5) .numero { background-color: #ffb703; }
+.habilidad:nth-child(6) .numero { background-color: #8ecae6; }
+.habilidad:nth-child(7) .numero { background-color: #cdb4db; }
+.habilidad:nth-child(8) .numero { background-color: #ffb703; }
+.habilidad:nth-child(9) .numero { background-color: #8ecae6; }
+.habilidad:nth-child(10) .numero { background-color: #e5989b; }
+
+/* --- Responsive habilidades --- */
+@media (max-width: 700px) {
+  .habilidad {
+    flex-direction: column;
+    text-align: center;
+  }
+  .habilidad .texto {
+    width: 100%;
+  }
+  .habilidad .numero {
+    width: 100%;
+    padding: 10px 0;
+  }
+}
+
+/* =======================
+   🎥 VIDEO Y MEDIOS
+======================= */
+.video {
+  max-width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+
+.video video {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 15px;
+  display: block;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* =======================
+   🖼️ IMÁGENES (diagrama y collage)
+======================= */
+.diagrama img,
+.collage img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  object-fit: contain;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* =======================
+   🌸 FOOTER
+======================= */
+footer {
+  margin-top: 60px;
+  color: #777;
+  font-size: 0.9em;
+  text-align: center;
+}
+
+/* =======================
+   📱 AJUSTES RESPONSIVE GLOBALES
+======================= */
+@media (max-width: 768px) {
+  body {
+    padding: 80px 15px 30px;
+  }
+
+  h1 {
+    font-size: 1.6em;
+  }
+
+  h2 {
+    font-size: 1.3em;
+  }
+
+  p {
+    font-size: 0.95em;
+  }
+
+  .grid {
+    gap: 15px;
+  }
+
+  .inner-card {
+    height: 180px;
+  }
+
+  footer {
+    font-size: 0.8em;
+  }
+}
+
+/* =======================
+   🔹 ELEMENTOS MULTIMEDIA
+======================= */
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+/* =======================
+   🌿 SECCIÓN LOGIN
+======================= */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 20px;
+  background-color: #f7f8fa;
+  min-height: calc(100vh - 80px); /* deja espacio para el navbar */
+  box-sizing: border-box;
+}
+
+form {
+  background-color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 40px 30px;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  font-family: 'Georgia', serif;
+  color: #333;
+}
+
+form h2 {
+  text-align: center;
+  font-size: 1.8em;
+  color: #4a2c2a;
+  margin-bottom: 25px;
+  letter-spacing: 0.5px;
+}
+
+form input[type="email"],
+form input[type="password"] {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1em;
+  font-family: 'Georgia', serif;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-sizing: border-box;
+}
+
+form input:focus {
+  border-color: #4a2c2a;
+  box-shadow: 0 0 5px rgba(74, 44, 42, 0.3);
+  outline: none;
+}
+
+form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4a2c2a;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+form button:hover {
+  background-color: #6d3e39;
+}
+
+form button:active {
+  transform: scale(0.98);
+}
+
+form p {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 0.95em;
+}
+
+form p a {
+  color: #4a2c2a;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+form p a:hover {
+  color: #f9b3c9;
+  text-decoration: underline;
+}
+
+/* =======================
+   🌿 RESPONSIVE LOGIN
+======================= */
+@media (max-width: 600px) {
+  form {
+    padding: 30px 20px;
+  }
+
+  form h2 {
+    font-size: 1.6em;
+  }
+
+  form button {
+    font-size: 0.95em;
+  }
+}
+/* =======================
+   🌿 SECCIÓN REGISTRO
+======================= */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 20px;
+  background-color: #f7f8fa;
+  min-height: calc(100vh - 80px);
+  box-sizing: border-box;
+}
+
+#registerForm {
+  background-color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 40px 30px;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  font-family: 'Georgia', serif;
+  color: #333;
+}
+
+#registerForm h2 {
+  text-align: center;
+  font-size: 1.8em;
+  color: #4a2c2a;
+  margin-bottom: 25px;
+  letter-spacing: 0.5px;
+}
+
+#registerForm input[type="text"],
+#registerForm input[type="email"],
+#registerForm input[type="password"] {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1em;
+  font-family: 'Georgia', serif;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-sizing: border-box;
+}
+
+#registerForm input:focus {
+  border-color: #4a2c2a;
+  box-shadow: 0 0 5px rgba(74, 44, 42, 0.3);
+  outline: none;
+}
+
+#registerForm button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4a2c2a;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+#registerForm button:hover {
+  background-color: #6d3e39;
+}
+
+#registerForm button:active {
+  transform: scale(0.98);
+}
+
+#registerForm p {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 0.95em;
+}
+
+#registerForm p a {
+  color: #4a2c2a;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+#registerForm p a:hover {
+  color: #f9b3c9;
+  text-decoration: underline;
+}
+
+/* =======================
+   🌿 RESPONSIVE REGISTRO
+======================= */
+@media (max-width: 600px) {
+  #registerForm {
+    padding: 30px 20px;
+  }
+
+  #registerForm h2 {
+    font-size: 1.6em;
+  }
+
+  #registerForm button {
+    font-size: 0.95em;
+  }
+}
+
