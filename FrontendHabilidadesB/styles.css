@@ -206,79 +206,109 @@ section {
 .c9 { background: #ffb74d; }
 .c10 { background: #4caf50; }
 
-/* =======================
-   🌺 SECCIÓN HABILIDADES BLANDAS
-======================= */
-.habilidades-blandas {
-  background-color: #fdf8f6;
-  padding: 60px 20px;
-  color: #4a2c2a;
-  max-width: 900px;
+/* ===========================
+   🌿 SECCIÓN HABILIDADES
+=========================== */
+#habilidades {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 250px); /* 🔹 columnas fijas */
+  gap: 25px;
+  justify-content: center; /* 🔹 centra el conjunto del grid */
+  align-items: center;
+  padding: 50px 20px;
+  box-sizing: border-box;
+  max-width: 100%;
   margin: 0 auto;
 }
 
-.habilidad {
-  background: #f3f1ed;
-  margin-bottom: 20px;
+.card {
+  width: 250px;
+  height: 200px;
+  perspective: 1000px;
+}
+
+/* animación flip */
+.inner-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.card:hover .inner-card {
+  transform: rotateY(180deg);
+}
+
+.front,
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  backface-visibility: hidden;
   display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.habilidad .texto {
-  padding: 25px;
-  text-align: left;
-  width: 80%;
-}
-
-.habilidad h3 {
-  margin: 0 0 10px;
-  font-size: 1.4em;
-  color: #4a2c2a;
-}
-
-.habilidad p {
-  margin: 0;
-  font-size: 0.95em;
-  line-height: 1.5;
-  color: #5c4a47;
-}
-
-.habilidad .numero {
-  width: 20%;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  font-size: 2em;
-  font-style: italic;
+  align-items: center;
+  text-align: center;
   color: #fff;
+  font-family: 'Georgia', serif;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* --- Colores de números --- */
-.habilidad:nth-child(2) .numero { background-color: #a3b18a; }
-.habilidad:nth-child(3) .numero { background-color: #8ecae6; }
-.habilidad:nth-child(4) .numero { background-color: #e5989b; }
-.habilidad:nth-child(5) .numero { background-color: #ffb703; }
-.habilidad:nth-child(6) .numero { background-color: #8ecae6; }
-.habilidad:nth-child(7) .numero { background-color: #cdb4db; }
-.habilidad:nth-child(8) .numero { background-color: #ffb703; }
-.habilidad:nth-child(9) .numero { background-color: #8ecae6; }
-.habilidad:nth-child(10) .numero { background-color: #e5989b; }
+.front {
+  font-size: 1.2em;
+  font-weight: bold;
+}
 
-/* --- Responsive habilidades --- */
-@media (max-width: 700px) {
-  .habilidad {
-    flex-direction: column;
-    text-align: center;
+.back {
+  background-color: #fff;
+  color: #333;
+  transform: rotateY(180deg);
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+/* 🎨 Colores */
+.c1 { background-color: #9C27B0; }
+.c2 { background-color: #3F51B5; }
+.c3 { background-color: #03A9F4; }
+.c4 { background-color: #009688; }
+.c5 { background-color: #4CAF50; }
+.c6 { background-color: #8BC34A; }
+.c7 { background-color: #FFC107; }
+.c8 { background-color: #FF9800; }
+.c9 { background-color: #E91E63; }
+.c10 { background-color: #795548; }
+
+/* ===========================
+   🌿 RESPONSIVE HABILIDADES
+=========================== */
+@media (max-width: 768px) {
+  #habilidades {
+    grid-template-columns: repeat(auto-fit, 220px); /* columnas más estrechas */
+    gap: 20px;
+    justify-content: center;
   }
-  .habilidad .texto {
-    width: 100%;
+
+  .card {
+    width: 220px;
+    height: 180px;
   }
-  .habilidad .numero {
-    width: 100%;
-    padding: 10px 0;
+}
+
+@media (max-width: 480px) {
+  #habilidades {
+    grid-template-columns: 1fr; /* una tarjeta por fila */
+    justify-items: center; /* 🔹 centra cada tarjeta */
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .card {
+    width: 90%;
+    max-width: 300px;
+    height: 160px;
   }
 }
 
@@ -590,4 +620,5 @@ main {
     font-size: 0.95em;
   }
 }
+
 
