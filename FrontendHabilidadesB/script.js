@@ -1,4 +1,6 @@
-document.addEventListener("DOMContentLoaded", () => {
+
+
+ document.addEventListener("DOMContentLoaded", () => {
   const toggle = document.getElementById("menu-toggle");
   const navLinks = document.getElementById("nav-links");
 
@@ -8,31 +10,53 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Verificar sesión al cargar la página
   verificarSesion();
 });
 
 async function verificarSesion() {
   try {
-    // ✅ Llama al endpoint correcto del backend
-    const response = await fetch("https://backendhabilidadesb.onrender.com", {
-      credentials: "include" // importante para sesiones
+    const response = await fetch("https://backendhabilidadesb.onrender.com/api/user", {
+      credentials: "include"
     });
-
     const data = await response.json();
     const nav = document.getElementById("nav-links");
 
-    // ✅ Si hay sesión activa, mostrar botón de logout
-    if (data.loggedIn) {
-      nav.innerHTML += `<li><a href="#" id="logoutLink">Cerrar sesión</a></li>`;
+    // Elimina los botones previos (para evitar duplicados)
+    const loginLink = nav.querySelector('a[href="/Html/login.html"]');
+    const registerLink = nav.querySelector('a[href="/Html/registro.html"]');
 
-      document.getElementById("logoutLink").addEventListener("click", async () => {
-        await fetch("http://localhost:7000/logout", {
-          credentials: "include"
+    if (data.loggedIn) {
+      // 🔹 Si el usuario está logueado
+      if (loginLink) loginLink.parentElement.remove();
+      if (registerLink) registerLink.parentElement.remove();
+
+      // Agregar botón de cerrar sesión si no existe
+      if (!document.getElementById("logoutLink")) {
+        const li = document.createElement("li");
+        li.innerHTML = `<a href="#" id="logoutLink">Cerrar sesión</a>`;
+        nav.appendChild(li);
+
+        document.getElementById("logoutLink").addEventListener("click", async (e) => {
+          e.preventDefault();
+          await fetch("https://backendhabilidadesb.onrender.com/logout", {
+            credentials: "include"
+          });
+          alert("Sesión cerrada correctamente.");
+          location.reload();
         });
-        alert("Sesión cerrada correctamente.");
-        location.reload();
-      });
+      }
+    } else {
+      // 🔹 Si NO está logueado, asegurarse de mostrar login y registro
+      if (!loginLink) {
+        const liLogin = document.createElement("li");
+        liLogin.innerHTML = `<a href="/Html/login.html">Login</a>`;
+        nav.appendChild(liLogin);
+      }
+      if (!registerLink) {
+        const liRegister = document.createElement("li");
+        liRegister.innerHTML = `<a href="/Html/registro.html">Registrarse</a>`;
+        nav.appendChild(liRegister);
+      }
     }
   } catch (error) {
     console.error("Error al verificar sesión:", error);
