@@ -46,17 +46,5 @@ async function verificarSesion() {
         location.reload();
       });
     } else {
-      // Agregar Login y Registro
-      const liLogin = document.createElement("li");
-      liLogin.innerHTML = `<a href="/Html/login.html">Login</a>`;
-      nav.appendChild(liLogin);
 
-      const liRegister = document.createElement("li");
-      liRegister.innerHTML = `<a href="/Html/registro.html">Registrarse</a>`;
-      nav.appendChild(liRegister);
-    }
-  } catch (error) {
-    console.error("Error al verificar sesión:", error);
-  }
-}
 
