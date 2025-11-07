@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 async function verificarSesion() {
   try {
     // ✅ Llama al endpoint correcto del backend
-    const response = await fetch("http://localhost:7000/api/user", {
+    const response = await fetch("https://backendhabilidadesb.onrender.com", {
       credentials: "include" // importante para sesiones
     });
 
@@ -38,4 +38,5 @@ async function verificarSesion() {
     console.error("Error al verificar sesión:", error);
   }
 }
+
 
