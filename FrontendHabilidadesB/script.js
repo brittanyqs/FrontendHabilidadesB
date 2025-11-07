@@ -38,3 +38,4 @@ async function verificarSesion() {
     console.error("Error al verificar sesión:", error);
   }
 }
+
