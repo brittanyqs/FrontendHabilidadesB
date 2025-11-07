@@ -9,26 +9,83 @@
 
 <body>
  <!-- 🌸 NAVBAR -->
-  <nav>
-    <div class="logo">Autocuidado</div>
-    <div class="menu-toggle" id="menu-toggle">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-    <ul id="nav-links">
-      <li><a href="/">Inicio</a></li>
-      <li><a href="#definiciones">Definiciones</a></li>
-      <li><a href="#diagrama">Círculo</a></li>
-      <li><a href="#video">Video</a></li>
-      <li><a href="#collage">Collage</a></li>
-      <li><a href="/html/Encuesta.html">Encuesta</a></li>
-            <li><a href="/Html/login.html">Login</a></li>
-      <li><a href="/Html/registro.html">Registarse</a></li>
+<nav>
+  <div class="logo">Autocuidado</div>
 
-      <!-- Aquí se insertará el botón de Cerrar sesión -->
-    </ul>
-  </nav>
+  <div class="menu-toggle" id="menu-toggle">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+  <ul id="nav-links">
+    <li><a href="/">Inicio</a></li>
+    <li><a href="#definiciones">Definiciones</a></li>
+    <li><a href="#diagrama">Círculo</a></li>
+    <li><a href="#video">Video</a></li>
+    <li><a href="#collage">Collage</a></li>
+    <li><a href="/html/Encuesta.html">Encuesta</a></li>
+
+    <!-- 🔐 Enlaces dinámicos según el estado de sesión -->
+    <li><a id="loginLink" href="/Html/login.html">Login</a></li>
+    <li><a id="registerLink" href="/Html/registro.html">Registrarse</a></li>
+    <li><span id="welcomeMsg" style="margin-left: 10px; font-weight: bold;"></span></li>
+    <li><a id="logoutLink" href="#" style="display: none;">Cerrar sesión</a></li>
+  </ul>
+</nav>
+
+<script>
+  // 🔍 Verifica si el usuario tiene sesión activa
+  async function verificarSesion() {
+    try {
+      const response = await fetch("https://backendhabilidadesb.onrender.com/api/user", {
+        credentials: "include" // necesario para enviar cookies de sesión
+      });
+      const data = await response.json();
+
+      const loginLink = document.getElementById("loginLink");
+      const registerLink = document.getElementById("registerLink");
+      const logoutLink = document.getElementById("logoutLink");
+      const welcomeMsg = document.getElementById("welcomeMsg");
+
+      if (data.loggedIn) {
+        // Usuario autenticado
+        loginLink.style.display = "none";
+        registerLink.style.display = "none";
+        logoutLink.style.display = "inline";
+        welcomeMsg.textContent = `Bienvenido, ${data.name}!`;
+      } else {
+        // Usuario NO autenticado
+        loginLink.style.display = "inline";
+        registerLink.style.display = "inline";
+        logoutLink.style.display = "none";
+        welcomeMsg.textContent = "";
+      }
+    } catch (error) {
+      console.error("Error al verificar sesión:", error);
+    }
+  }
+
+  // 🚪 Cerrar sesión
+  async function cerrarSesion() {
+    try {
+      await fetch("https://backendhabilidadesb.onrender.com/logout", {
+        credentials: "include"
+      });
+      alert("Sesión cerrada correctamente");
+      window.location.reload(); // refresca la página para actualizar la navbar
+    } catch (error) {
+      console.error("Error al cerrar sesión:", error);
+      alert("No se pudo cerrar la sesión.");
+    }
+  }
+
+  document.getElementById("logoutLink").addEventListener("click", cerrarSesion);
+
+  // Ejecutar al cargar la página
+  verificarSesion();
+</script>
+
 
 
   <!-- 🌼 Definición de habilidades blandas -->
@@ -152,6 +209,7 @@
  <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
