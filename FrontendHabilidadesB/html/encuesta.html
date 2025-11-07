@@ -207,7 +207,7 @@
 
       // Enviar respuestas al backend
       try {
-        const resp = await fetch("http://localhost:7000/guardar-encuesta", {
+        const resp = await fetch("https://backendhabilidadesb.onrender.com", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           credentials: "include",
@@ -233,3 +233,4 @@
  <script src="script.js"></script>
 </body>
 </html>
+
