@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa Interactivo del Autocuidado</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+ <!-- 🌸 NAVBAR -->
+  <nav>
+    <div class="logo">Autocuidado</div>
+    <div class="menu-toggle" id="menu-toggle">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <ul id="nav-links">
+      <li><a href="/">Inicio</a></li>
+            <li><a href="/Html/login.html">Login</a></li>
+      <li><a href="/Html/registro.html">Registarse</a></li>
+
+      <!-- Aquí se insertará el botón de Cerrar sesión -->
+    </ul>
+  </nav>
+ <style>
+    * {
+      box-sizing: border-box;
+    }
+
+
+    .container {
+      max-width: 1000px;
+      width: 95%;
+      margin: 40px auto;
+      background: #ffffffc9;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+
+    
+
+    .questions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .question-card {
+      background: #ffffff;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .question-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+
+    .question-card h3 {
+      margin-bottom: 10px;
+      color: #00796b;
+      font-size: 1rem;
+    }
+
+    label {
+      display: block;
+      padding: 8px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="radio"] {
+      margin-right: 8px;
+      accent-color: #009688;
+    }
+
+    label:hover {
+      background-color: #e0f2f1;
+    }
+
+    button {
+      display: block;
+      margin: 30px auto;
+      background: linear-gradient(45deg, #009688, #26a69a);
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.4s ease, transform 0.2s;
+    }
+
+    button:hover {
+      background: linear-gradient(45deg, #00796b, #009688);
+      transform: scale(1.05);
+    }
+
+    .resultado {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #004d40;
+      background: #e0f7fa;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      padding: 20px;
+      color: #004d40;
+      font-size: 0.9rem;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Encuesta sobre Autocuidado y Habilidades Blandas</h2>
+    <form id="encuestaForm">
+      <div id="preguntas"></div>
+      <button type="submit">Enviar respuestas</button>
+    </form>
+
+    <div id="resultado" class="resultado"></div>
+  </div>
+
+  <script>
+    const preguntas = [
+      { texto: "1. ¿Qué es la empatía?", opciones: ["A) Comprender y compartir los sentimientos de otros", "B) Ignorar las emociones ajenas", "C) Criticar a los demás"], correcta: "A" },
+      { texto: "2. ¿Qué significa resiliencia?", opciones: ["A) Evitar los problemas", "B) Adaptarse positivamente a las dificultades", "C) No aceptar el cambio"], correcta: "B" },
+      { texto: "3. La comunicación efectiva implica:", opciones: ["A) Escuchar y expresarse con claridad", "B) Hablar sin pensar", "C) Interrumpir al otro"], correcta: "A" },
+      { texto: "4. La proactividad es:", opciones: ["A) Esperar a que otros actúen", "B) Tomar iniciativa y anticiparse", "C) Reaccionar con quejas"], correcta: "B" },
+      { texto: "5. La autocompasión consiste en:", opciones: ["A) Ser amable contigo mismo", "B) Ignorar tus emociones", "C) Criticarte constantemente"], correcta: "A" },
+      { texto: "6. Una persona adaptable:", opciones: ["A) Se resiste al cambio", "B) Se ajusta a nuevas situaciones", "C) Evita aprender cosas nuevas"], correcta: "B" },
+      { texto: "7. La gestión del tiempo ayuda a:", opciones: ["A) Organizar tareas y reducir estrés", "B) Perder oportunidades", "C) Hacer todo al mismo tiempo"], correcta: "A" },
+      { texto: "8. La creatividad se estimula cuando:", opciones: ["A) Se aceptan nuevas ideas", "B) Se evita el cambio", "C) Se repite lo mismo"], correcta: "A" },
+      { texto: "9. El aprendizaje continuo implica:", opciones: ["A) Actualizar conocimientos y crecer", "B) Quedarse con lo que ya se sabe", "C) Evitar nuevos retos"], correcta: "A" },
+      { texto: "10. El trabajo en equipo se basa en:", opciones: ["A) Competir con los demás", "B) Colaborar y respetar", "C) Hacer todo solo"], correcta: "B" },
+      { texto: "11. El liderazgo efectivo promueve:", opciones: ["A) Inspirar y apoyar al grupo", "B) Imponer miedo", "C) Evitar responsabilidades"], correcta: "A" },
+      { texto: "12. La empatía en el autocuidado ayuda a:", opciones: ["A) Reconocer tus límites", "B) Ignorar tus emociones", "C) Exigir más de ti mismo"], correcta: "A" },
+      { texto: "13. Ser resiliente implica:", opciones: ["A) Aprender de las caídas", "B) Evitar los desafíos", "C) Negar los problemas"], correcta: "A" },
+      { texto: "14. Una persona proactiva:", opciones: ["A) Se anticipa a los problemas", "B) Se rinde fácilmente", "C) Espera instrucciones"], correcta: "A" },
+      { texto: "15. Gestionar bien el tiempo permite:", opciones: ["A) Equilibrar la vida personal y laboral", "B) Hacer todo a última hora", "C) No descansar"], correcta: "A" },
+      { texto: "16. Adaptarse al cambio significa:", opciones: ["A) Resistirse a lo nuevo", "B) Aceptar y aprender de las transiciones", "C) Culpar a los demás"], correcta: "B" },
+      { texto: "17. Un líder saludable:", opciones: ["A) Escucha, guía y motiva", "B) Controla y castiga", "C) Ignora a su equipo"], correcta: "A" },
+      { texto: "18. La comunicación empática ayuda a:", opciones: ["A) Resolver conflictos", "B) Crear malentendidos", "C) Ignorar al otro"], correcta: "A" },
+      { texto: "19. Ser creativo ayuda a:", opciones: ["A) Resolver problemas de forma original", "B) Evitar la reflexión", "C) Repetir lo mismo siempre"], correcta: "A" },
+      { texto: "20. El autocuidado consiste en:", opciones: ["A) Priorizar tu bienestar físico y emocional", "B) Ignorar tus necesidades", "C) Pensar solo en los demás"], correcta: "A" }
+    ];
+
+    const preguntasDiv = document.getElementById("preguntas");
+
+    preguntas.forEach((p, index) => {
+      const div = document.createElement("div");
+      div.classList.add("question");
+      div.innerHTML = `
+        <h3>${p.texto}</h3>
+        ${p.opciones.map((op, i) => `
+          <label>
+            <input type="radio" name="preg${index}" value="${op.charAt(0)}"> ${op}
+          </label>`).join("")}
+      `;
+      preguntasDiv.appendChild(div);
+    });
+
+    document.getElementById("encuestaForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      let correctas = 0;
+      const respuestasUsuario = [];
+
+      preguntas.forEach((p, i) => {
+        const seleccionada = document.querySelector(`input[name="preg${i}"]:checked`);
+        if (seleccionada) {
+          const valor = seleccionada.value;
+          respuestasUsuario.push({ pregunta: p.texto, respuesta: valor });
+          if (valor === p.correcta) correctas++;
+        }
+      });
+
+      // Calcular resultado
+      let nivel = "";
+      if (correctas <= 8) nivel = "BAJO";
+      else if (correctas <= 15) nivel = "MEDIO";
+      else nivel = "ALTO";
+
+      document.getElementById("resultado").innerHTML = 
+        `Respuestas correctas: ${correctas}/20<br><br>
+         Nivel de conocimiento: <strong>${nivel}</strong>`;
+
+      // Enviar respuestas al backend
+      try {
+        const resp = await fetch("http://localhost:7000/guardar-encuesta", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ respuestas: respuestasUsuario, puntaje: correctas, nivel })
+        });
+
+        const data = await resp.json();
+        console.log("Guardado:", data);
+      } catch (error) {
+        console.error("Error al guardar encuesta:", error);
+      }
+    });
+  </script>
+
+
+
+
+  <!-- 🌺 Footer -->
+  <footer id="contacto">
+    © 2025 | Mapa interactivo de habilidades blandas para el autocuidado
+  </footer>
+
+ <script src="script.js"></script>
+</body>
+</html>
