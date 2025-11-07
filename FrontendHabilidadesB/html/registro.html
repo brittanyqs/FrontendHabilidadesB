@@ -18,10 +18,14 @@
       <div></div>
     </div>
     <ul id="nav-links">
-      <li><a href="/index.html">Inicio</a></li>
+      <li><a href="#/">Inicio</a></li>
+      <li><a href="#definiciones">Definiciones</a></li>
+      <li><a href="#diagrama">Círculo</a></li>
+      <li><a href="#video">Video</a></li>
+      <li><a href="#collage">Collage</a></li>
       <li><a href="#formulario">Formulario</a></li>
-      <li><a href="/html/login.html">Login</a></li>
- 
+      <li><a href="/Html/login.html">Login</a></li>
+      <li><a href="/Html/registro.html">Registro</a></li>
     </ul>
   </nav>
 <!-- Main -->
@@ -55,6 +59,43 @@
     © 2025 | Mapa interactivo de habilidades blandas para el autocuidado
   </footer>
  <script src="/script.js"></script>
+
+
+ <script>
+document.getElementById("registerForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  try {
+  const response = await fetch("http://localhost:7000/registro", {
+
+
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "include", // 🔐 Para mantener la sesión si decides iniciarla automáticamente
+      body: JSON.stringify({ name, email, password })
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert("✅ Registro exitoso. Ahora inicia sesión.");
+      window.location.href = "/Html/login.html"; // Redirige al login
+    } else {
+      alert(`⚠️ ${data.message || "Error al registrar usuario."}`);
+    }
+
+  } catch (error) {
+    console.error("Error:", error);
+    alert("❌ No se pudo conectar con el servidor.");
+  }
+});
+</script>
 
 </body>
 </html>
