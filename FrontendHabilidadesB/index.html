@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 
- <script src="script.js"></script>
 <body>
  <!-- 🌸 NAVBAR -->
   <nav>
@@ -31,48 +30,6 @@
     </ul>
   </nav>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const toggle = document.getElementById("menu-toggle");
-      const navLinks = document.getElementById("nav-links");
-
-      if (toggle && navLinks) {
-        toggle.addEventListener("click", () => {
-          navLinks.classList.toggle("show");
-        });
-      }
-
-      mostrarBotonCerrarSesion();
-    });
-
-    async function mostrarBotonCerrarSesion() {
-      try {
-        const response = await fetch("http://localhost:7000/api/user", {
-          credentials: "include"
-        });
-        const data = await response.json();
-        console.log("Datos de sesión:", data);
-
-        const nav = document.getElementById("nav-links");
-
-        if (data.loggedIn) {
-          // Solo agregar el botón si el usuario está logueado
-          const li = document.createElement("li");
-          li.innerHTML = `<a href="#" id="logoutLink">Cerrar sesión</a>`;
-          nav.appendChild(li);
-
-          document.getElementById("logoutLink").addEventListener("click", async (e) => {
-            e.preventDefault();
-            await fetch("http://localhost:7000/logout", { credentials: "include" });
-            alert("Sesión cerrada correctamente.");
-            location.reload();
-          });
-        }
-      } catch (error) {
-        console.error("Error al mostrar el botón de cierre de sesión:", error);
-      }
-    }
-  </script>
 
   <!-- 🌼 Definición de habilidades blandas -->
   <section id="definiciones" class="definiciones">
@@ -191,6 +148,7 @@
     © 2025 | Mapa interactivo de habilidades blandas para el autocuidado
   </footer>
 
+ <script src="script.js"></script>
 </body>
 </html>
 
