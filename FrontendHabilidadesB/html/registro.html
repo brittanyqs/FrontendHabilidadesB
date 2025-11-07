@@ -18,23 +18,21 @@
       <div></div>
     </div>
     <ul id="nav-links">
-      <li><a href="#/">Inicio</a></li>
+      <li><a href="/index.html">Inicio</a></li>
       <li><a href="#definiciones">Definiciones</a></li>
       <li><a href="#diagrama">Círculo</a></li>
       <li><a href="#video">Video</a></li>
       <li><a href="#collage">Collage</a></li>
       <li><a href="#formulario">Formulario</a></li>
       <li><a href="/Html/login.html">Login</a></li>
+      <li><a href="/Html/registro.html">Registro</a></li>
     </ul>
   </nav>
-<!-- Main -->
+ <!-- Main -->
     <main class="flex justify-center items-center flex-1 px-4">
       <div class="w-full max-w-md">
-        <form id="registerForm" class="bg-white shadow-lg rounded-xl p-8">
-          <h2 class="text-2xl font-bold mb-6 text-center text-green-700">Registro</h2>
-
-          <input id="name" type="text" name="name" placeholder="Nombre completo" required
-            class="w-full mb-4 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-green-500">
+        <form id="loginForm" class="bg-white shadow-lg rounded-xl p-8">
+          <h2 class="text-2xl font-bold mb-6 text-center text-green-700">Iniciar Sesión</h2>
 
           <input id="email" type="email" name="email" placeholder="Correo electrónico" required
             class="w-full mb-4 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-green-500">
@@ -44,58 +42,59 @@
 
           <button type="submit"
             class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition font-semibold">
-            Registrarse
+            Entrar
           </button>
 
           <p class="text-center mt-4">
-            <a href="/html/login.html" class="text-green-600 hover:underline">Ya tengo cuenta</a>
+            <a href="/html/registro.html" class="text-green-600 hover:underline">Crear cuenta nueva</a>
           </p>
         </form>
       </div>
     </main>
+
   <!-- 🌺 Footer -->
   <footer id="contacto">
     © 2025 | Mapa interactivo de habilidades blandas para el autocuidado
   </footer>
+
  <script src="/script.js"></script>
 
-
  <script>
-document.getElementById("registerForm").addEventListener("submit", async (e) => {
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const name = document.getElementById("name").value.trim();
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
 
   try {
-  const response = await fetch("http://localhost:7000/registro", {
-
+    const response = await fetch("http://localhost:7000/login", {
 
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      credentials: "include", // 🔐 Para mantener la sesión si decides iniciarla automáticamente
-      body: JSON.stringify({ name, email, password })
+      credentials: "include", // 🔐 Permite que se guarde la sesión
+      body: JSON.stringify({ email, password })
     });
 
     const data = await response.json();
 
-    if (response.ok) {
-      alert("✅ Registro exitoso. Ahora inicia sesión.");
-      window.location.href = "/Html/login.html"; // Redirige al login
+    if (data.success) {
+      alert(`¡Bienvenido ${data.name}!`);
+      // 🔄 Redirigir al index si inicia sesión correctamente
+      window.location.href = "/index.html";
     } else {
-      alert(`⚠️ ${data.message || "Error al registrar usuario."}`);
+      alert(data.message || "Error al iniciar sesión.");
     }
 
   } catch (error) {
     console.error("Error:", error);
-    alert("❌ No se pudo conectar con el servidor.");
+    alert("Hubo un problema al conectar con el servidor.");
   }
 });
 </script>
 
 </body>
 </html>
+
 
